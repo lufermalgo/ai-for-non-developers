@@ -50,7 +50,7 @@ This framework is optimized for tools that allow autonomous file manipulation an
 ### Requirements
 
 * A supported AI tool with file manipulation and terminal access
-* Bash or compatible shell
+* Python 3.10+
 * Git (for version control)
 
 ## Core Principles
@@ -62,15 +62,19 @@ This framework is optimized for tools that allow autonomous file manipulation an
 
 ## Quick Start
 
-1. **Clone this repository**: `git clone https://github.com/lufermalgo/ai-for-non-developers.git`
-2. **Run the Installer**:
+1. **Install `aind`** — the project manager CLI:
 
    ```bash
-   chmod +x cli/install.sh
-   ./cli/install.sh
+   curl -fsSL https://raw.githubusercontent.com/lufermalgo/ai-for-non-developers/main/cli/get-aind.sh | bash
    ```
 
-3. **Start your project**: Open your preferred AI tool and say: *"I want to build [My Idea]. Help me discover the details."*
+2. **Initialize your project** in any folder:
+
+   ```bash
+   aind init
+   ```
+
+3. **Start building**: Open your AI tool and say: *"I want to build [My Idea]. Help me discover the details."*
 
 ## How to Interact (The Product Owner Way)
 
