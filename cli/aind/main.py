@@ -57,5 +57,34 @@ def platform_cmd():
     rprint(f"  Rule file  : [white]{rule}[/white]")
     rprint(f"  Skills dir : [white]{skills}[/white]\n")
 
+
+@app.command(name="update")
+def update_cmd():
+    """Update aind to the latest version from GitHub."""
+    import subprocess
+    import shutil
+    from rich.console import Console
+    console = Console()
+
+    PACKAGE = "aind @ git+https://github.com/lufermalgo/ai-for-non-developers.git#subdirectory=cli"
+
+    console.print(f"\n  [bold cyan]Updating aind...[/bold cyan]")
+
+    if shutil.which("uv"):
+        cmd = ["uv", "tool", "install", PACKAGE, "--force", "-q"]
+    elif shutil.which("pipx"):
+        cmd = ["pipx", "install", PACKAGE, "--force", "-q"]
+    else:
+        import sys
+        cmd = [sys.executable, "-m", "pip", "install", "--user", "--quiet", PACKAGE]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode == 0:
+        console.print(f"  [green]✓[/green] aind updated successfully\n")
+    else:
+        rprint(f"  [red]✗[/red] Update failed:\n{result.stderr}\n")
+        raise typer.Exit(1)
+
+
 if __name__ == "__main__":
     app()
