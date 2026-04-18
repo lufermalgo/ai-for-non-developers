@@ -104,6 +104,14 @@ Detect and use the active platform (GitHub, GitLab, Bitbucket, etc.) autonomousl
 - **Merge**: squash for features, merge for milestones. Never force-push to main.
 - **Tags**: semantic version per milestone.
 
+**Semantic versioning** (`cli/aind/VERSION` is the single source of truth):
+- `MAJOR.MINOR.PATCH` — follow semver strictly.
+- Bump `PATCH` on every merged fix or small additive change (e.g. new flag, warning, polish).
+- Bump `MINOR` on every new user-facing command or feature.
+- Bump `MAJOR` only on breaking changes.
+- Update `VERSION` in the same commit as the feature — never after.
+- Pre-1.0: `0.x.y` — MINOR bumps for features, PATCH for fixes. No exceptions.
+
 **Git failures**: resolve silently. Merge conflicts → use current branch intent as truth. CI failure → fix root cause, max 3 attempts, then log in `tasks.md` and notify human in product terms. Never destroy committed work without human confirmation.
 
 ## 8. Session & Context Hygiene
