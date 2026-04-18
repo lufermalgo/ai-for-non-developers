@@ -16,11 +16,11 @@ PLATFORM_RULE_FILE = {
     Platform.OTHER: "AGENTS.md",
 }
 
-PLATFORM_SKILLS_DIR = {
-    Platform.CLAUDE_CODE: Path.home() / ".claude" / "skills",
-    Platform.GEMINI_CLI: Path.home() / ".gemini" / "skills",
-    Platform.OPENCODE: Path.home() / ".opencode" / "skills",
-    Platform.OTHER: Path.home() / ".ai" / "skills",
+PLATFORM_SKILLS_SUBDIR = {
+    Platform.CLAUDE_CODE: ".claude/skills",
+    Platform.GEMINI_CLI: ".gemini/skills",
+    Platform.OPENCODE: ".opencode/skills",
+    Platform.OTHER: ".ai/skills",
 }
 
 PLATFORM_LABEL = {
@@ -56,8 +56,12 @@ def detect(project_dir: Path = Path(".")) -> Platform:
     return Platform.OTHER
 
 
-def skills_dir(platform: Platform) -> Path:
-    return PLATFORM_SKILLS_DIR[platform]
+def project_skills_dir(project_dir: Path = Path(".")) -> Path:
+    """Return the skills directory for the current project, or raise if not in a project."""
+    platform = detect(project_dir)
+    if not was_detected_from_file(project_dir):
+        raise RuntimeError("Not in an aind project. Run `aind init` first.")
+    return project_dir / PLATFORM_SKILLS_SUBDIR[platform]
 
 
 def rule_file(platform: Platform) -> str:
