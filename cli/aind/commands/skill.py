@@ -44,23 +44,13 @@ def list_cmd(
 @app.command("add")
 def add_cmd(
     name: str = typer.Argument(..., help="Skill name to install"),
-    platform_name: str = typer.Option(None, "--platform", "-p", help="Target platform"),
-    global_: bool = typer.Option(False, "--global", "-g", help="Install globally"),
 ):
-    """Install a skill from the registry."""
-    if platform_name:
-        try:
-            platform = plat.Platform(platform_name)
-        except ValueError:
-            rprint(f"[red]Unknown platform: {platform_name}[/red]")
-            raise typer.Exit(1)
-    else:
-        platform = plat.detect()
-
-    if global_:
-        dest_dir = plat.skills_dir(platform)
-    else:
-        dest_dir = Path(".claude") / "skills" if platform == plat.Platform.CLAUDE_CODE else Path(".ai") / "skills"
+    """Install a skill into the current project."""
+    try:
+        dest_dir = plat.project_skills_dir(Path("."))
+    except RuntimeError as e:
+        rprint(f"  [red]✗[/red] {e}\n")
+        raise typer.Exit(1)
 
     console.print(f"\n  Installing [bold]{name}[/bold] → {dest_dir}")
     try:
@@ -77,23 +67,13 @@ def add_cmd(
 @app.command("remove")
 def remove_cmd(
     name: str = typer.Argument(..., help="Skill name to remove"),
-    platform_name: str = typer.Option(None, "--platform", "-p"),
-    global_: bool = typer.Option(False, "--global", "-g"),
 ):
-    """Remove an installed skill."""
-    if platform_name:
-        try:
-            platform = plat.Platform(platform_name)
-        except ValueError:
-            rprint(f"[red]Unknown platform: {platform_name}[/red]")
-            raise typer.Exit(1)
-    else:
-        platform = plat.detect()
-
-    if global_:
-        dest_dir = plat.skills_dir(platform)
-    else:
-        dest_dir = Path(".claude") / "skills" if platform == plat.Platform.CLAUDE_CODE else Path(".ai") / "skills"
+    """Remove a skill from the current project."""
+    try:
+        dest_dir = plat.project_skills_dir(Path("."))
+    except RuntimeError as e:
+        rprint(f"  [red]✗[/red] {e}\n")
+        raise typer.Exit(1)
 
     removed = registry.remove_skill(name, dest_dir)
     if removed:
