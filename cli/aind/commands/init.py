@@ -20,6 +20,28 @@ AIND_FILES = {
 }
 
 
+_PLATFORM_CHOICES = [
+    (plat.Platform.CLAUDE_CODE, "Claude Code / CoWork"),
+    (plat.Platform.GEMINI_CLI, "Gemini CLI / Antigravity"),
+    (plat.Platform.OPENCODE, "OpenCode"),
+]
+
+
+def _prompt_platform() -> plat.Platform:
+    console.print("\n  [bold]Which AI platform are you using?[/bold]")
+    for i, (_, label) in enumerate(_PLATFORM_CHOICES, 1):
+        console.print(f"  [cyan]{i}[/cyan]. {label}")
+    while True:
+        raw = typer.prompt("\n  Enter number", default="1")
+        try:
+            idx = int(raw) - 1
+            if 0 <= idx < len(_PLATFORM_CHOICES):
+                return _PLATFORM_CHOICES[idx][0]
+        except ValueError:
+            pass
+        console.print("  [red]Invalid choice. Enter 1, 2, or 3.[/red]")
+
+
 def run(directory: Path, platform_name: str | None):
     project_dir = directory.resolve()
     project_dir.mkdir(parents=True, exist_ok=True)
@@ -32,7 +54,11 @@ def run(directory: Path, platform_name: str | None):
             rprint(f"[red]Unknown platform: {platform_name}[/red]")
             raise typer.Exit(1)
     else:
-        platform = plat.detect(project_dir)
+        detected = plat.detect(project_dir)
+        if detected == plat.Platform.OTHER or not plat.was_detected_from_file(project_dir):
+            platform = _prompt_platform()
+        else:
+            platform = detected
 
     label = plat.PLATFORM_LABEL[platform]
     rule_file = plat.rule_file(platform)
