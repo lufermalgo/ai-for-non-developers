@@ -31,6 +31,11 @@ PLATFORM_LABEL = {
 }
 
 
+def was_detected_from_file(project_dir: Path = Path(".")) -> bool:
+    """True if a platform rule file already exists in the project directory."""
+    return any((project_dir / f).exists() for f in ("CLAUDE.md", "GEMINI.md", "AGENTS.md"))
+
+
 def detect(project_dir: Path = Path(".")) -> Platform:
     """Detect active AI platform from existing rule files or installed binaries."""
     if (project_dir / "CLAUDE.md").exists():
