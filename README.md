@@ -1,14 +1,32 @@
 # AI for Non-Developers
 
+[![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![Contributing](https://img.shields.io/badge/contributing-welcome-blue)](CONTRIBUTING.md)
+
 > **For those with a vision, but who don't speak "code".**
+
+## The Problem
 
 Today, the world is full of AI tools designed to accelerate developers. But what about those who have the idea in their head but don't know how to translate it into the language of a machine?
 
-When a non-developer tries to build with AI, they face two major walls: the technical "how" barrier and the massive consumption of tokens/credits trying to explain their vision.
+When a non-developer tries to build with AI, they face two major walls:
+1. The technical "how" barrier
+2. Massive consumption of tokens/credits trying to explain their vision
 
 **This project exists to tear down those walls.**
 
-## The Vision: AI Engineering Partner
+## Table of Contents
+
+- [What is This?](#what-is-this)
+- [Supported Platforms](#v1-supported-platforms)
+- [Core Principles](#core-principles)
+- [Quick Start](#quick-start)
+- [How to Use](#how-to-interact-the-product-owner-way)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
+- [License](#license)
+
+## What is This?
 
 This is not a "code assistant." This is an **AI Engineering Partner** framework.
 
@@ -21,9 +39,15 @@ This is not a "code assistant." This is an **AI Engineering Partner** framework.
 
 This framework is optimized for tools that allow autonomous file manipulation and terminal execution:
 
-* **Antigravity / Gemini CLI (GEMINI.md)**
-* **Claude Code / CoWork (CLAUDE.md)**
-* **OpenCode (OPENCODE.md)**
+* **Claude Code / CoWork** – [See CLAUDE.md example](docs/CLAUDE_EXAMPLE.md)
+* **Gemini CLI (Antigravity)** – See GEMINI.md (coming soon)
+* **OpenCode** – See OPENCODE.md (coming soon)
+
+### Requirements
+
+* A supported AI tool with file manipulation and terminal access
+* Bash or compatible shell
+* Git (for version control)
 
 ## Core Principles
 
@@ -53,5 +77,33 @@ Don't tell the AI *how* to write the code. Tell it what you want the user to fee
 * **The "Stop" Command:** If the AI is going in circles, just say: *"Stop. Replan and explain your new strategy."*
 * **Tracking:** Check `.aind/tasks.md` for real-time progress and `.aind/context.md` for the current project vision.
 
+## Documentation
+
+Full documentation available in [`docs/`](docs/) including:
+
+* **[Quickstart Guide](docs/quickstart.md)** – Get up and running in minutes
+* **[Prompting Guide](docs/prompting-guide.md)** – How to communicate effectively with your AI partner
+* **[Examples](docs/)** – Real-world patterns and workflows
+* **[CLAUDE.md Example](docs/CLAUDE_EXAMPLE.md)** – Template for your own AI instructions
+
+## Contributing
+
+We welcome contributions from product visionaries, developers, and everyone in between!
+
+* **Have a bug to report?** [Open an issue](https://github.com/lufermalgo/ai-for-non-developers/issues/new?template=bug_report.md)
+* **Have a feature idea?** [Suggest a feature](https://github.com/lufermalgo/ai-for-non-developers/issues/new?template=feature_request.md)
+* **Want to contribute code?** See [CONTRIBUTING.md](CONTRIBUTING.md)
+
+Please read our [Code of Conduct](CODE_OF_CONDUCT.md) to understand our community values.
+
+## Security
+
+Found a security vulnerability? Please report it responsibly via [SECURITY.md](SECURITY.md) instead of opening a public issue.
+
+## License
+
+This project is licensed under the MIT License — see [LICENSE](LICENSE) for details.
+
 ---
+
 *Created with ❤️ for the dreamers who don't want to be slowed down by syntax.*
