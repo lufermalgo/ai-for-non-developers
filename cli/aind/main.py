@@ -62,6 +62,32 @@ def platform_cmd():
     rprint(f"  Skills dir : [white]{skills}[/white]\n")
 
 
+@app.command(name="uninstall")
+def uninstall_cmd():
+    """Remove aind from the system."""
+    import subprocess
+    import shutil
+    from rich.console import Console
+    console = Console()
+
+    console.print("\n  [bold cyan]Uninstalling aind...[/bold cyan]")
+
+    if shutil.which("uv"):
+        cmd = ["uv", "tool", "uninstall", "aind"]
+    elif shutil.which("pipx"):
+        cmd = ["pipx", "uninstall", "aind"]
+    else:
+        import sys
+        cmd = [sys.executable, "-m", "pip", "uninstall", "aind", "-y"]
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.returncode == 0:
+        console.print("  [green]✓[/green] aind removed\n")
+    else:
+        rprint(f"  [red]✗[/red] {result.stderr.strip()}\n")
+        raise typer.Exit(1)
+
+
 @app.command(name="update")
 def update_cmd():
     """Update aind to the latest version from GitHub."""
