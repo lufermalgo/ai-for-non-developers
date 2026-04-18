@@ -52,10 +52,10 @@ def add_cmd(
         rprint(f"  [red]✗[/red] {e}\n")
         raise typer.Exit(1)
 
-    console.print(f"\n  Installing [bold]{name}[/bold] → {dest_dir}")
+    console.print(f"\n  Installing [bold]{name}[/bold] → {dest_dir}/{name}/")
     try:
         dest = registry.install_skill(name, dest_dir)
-        console.print(f"  [green]✓[/green] {dest}\n")
+        console.print(f"  [green]✓[/green] {dest}/\n")
     except ValueError as e:
         rprint(f"  [red]✗[/red] {e}\n")
         raise typer.Exit(1)
