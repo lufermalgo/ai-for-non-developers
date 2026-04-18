@@ -10,6 +10,7 @@
 - **Focused diffs**: touch only what the task requires. Zero side edits.
 - **Lazy loading**: pull context just-in-time, never preemptively.
 - **Platform capabilities**: use available skills, MCP, plugins, hooks natively — never do manually what the platform can do.
+- **Skill installation**: use `aind skill list` to browse the registry, `aind skill add <name>` to install into the project, `aind skill remove <name>` to uninstall — never install skills manually.
 - **Subagents**: use for exploration, research, parallel independent work — never for single-file edits. Select lightest capable model. Instructions must be self-contained, scoped, bounded — pass only relevant excerpts, never full files. Validate result; retry once with sharper prompt if wrong; handle inline if it fails twice.
 - **Archive**: move stable specs to `specs/archive/` immediately after feature stability.
 - **Output**: no greetings, preambles, or trailing narration. Default: one concise line.
