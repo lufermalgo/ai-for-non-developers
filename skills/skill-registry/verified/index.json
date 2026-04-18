@@ -1,0 +1,13 @@
+{
+  "version": "1",
+  "skills": [
+    {
+      "name": "github-multiagent-workflow",
+      "description": "Workflow rules for multiple AI agents operating on the same Git repository.",
+      "version": "1.0.0",
+      "platforms": ["claude-code", "gemini-cli", "opencode"],
+      "file": "github-multiagent-workflow.md",
+      "url": "https://raw.githubusercontent.com/lufermalgo/ai-for-non-developers/main/skills/skill-registry/verified/github-multiagent-workflow.md"
+    }
+  ]
+}
