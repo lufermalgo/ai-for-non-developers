@@ -1,5 +1,9 @@
 # AI for Non-Developers
 
+<div align="center">
+  <img src="assets/logo-ai-for-non-developers.png" alt="AI for Non-Developers Logo" width="400" />
+</div>
+
 [![MIT License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![Contributing](https://img.shields.io/badge/contributing-welcome-blue)](CONTRIBUTING.md)
 
