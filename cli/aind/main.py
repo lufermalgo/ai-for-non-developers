@@ -24,7 +24,11 @@ app = typer.Typer(
 def main(
     version: bool = typer.Option(None, "--version", "-v", callback=version_callback, is_eager=True, help="Show version."),
 ):
-    pass
+    from aind import version_check
+    from rich.console import Console
+    warning = version_check.check()
+    if warning:
+        Console().print(warning)
 
 app.add_typer(skill_app, name="skill")
 
